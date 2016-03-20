@@ -1,30 +1,8 @@
 import xml.etree.ElementTree as ElementTree
 import urllib2
 
-from db_connection import DbConnection
-
-class PersonDTO:
-    'Class used to store and transfer the data of a Person on our data base, it has the same fields as our person table'
-    def __init__(self, name, politicalName, birthDate, gender, email, photoUrl, profession=None):
-        self.name = name
-        self.politicalName = politicalName
-        self.birthDate = birthDate
-        self.gender = gender
-        self.profession = profession
-        self.email = email
-        self.photoUrl = photoUrl
-
-class PersonDAO:
-    'Data access object of for person, include the methods for inserting and retrieving a person from the data base'
-
-class FederalDeputyTermDTO:
-    'Class used to store and transfer the data of a term of Federal Deputy, it has the same fields as out FDT table'
-    def __init__(self, id, personId, state, initialDate, finalDate=None):
-        self.id = id
-        self.personId = personId
-        self.state = state
-        self.initialDate = initialDate
-        self.finalDate = finalDate
+from db_connection import *
+from model import *
 
 print('Downloading general deputies info...')
 deputiesReader = urllib2.urlopen('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDeputados')
@@ -32,6 +10,8 @@ deputiesXml = deputiesReader.read()
 print('Parsing general deputies file...')
 deputiesDataTree = ElementTree.fromstring(deputiesXml)
 
+personsList = []
+federalDeputyTermList = []
 i = 0
 for deputy in deputiesDataTree:
     chamberId = deputy.findtext('ideCadastro')
@@ -52,3 +32,33 @@ for deputy in deputiesDataTree:
     deputyDataTree = ElementTree.fromstring(deputyXml).find('Deputado')
 
     profession = deputyDataTree.findtext('nomeProfissao')
+    if not profession.strip():
+        #Verifies if the profession is empty by removing all useless characters and checking if the string is empty
+        profession = None
+
+    term = deputyDataTree.find('periodosExercicio').find('periodoExercicio')
+
+    initialDateArray = term.findtext('dataInicio').split('/')
+    #format form dd/mm/yyyy to yyyy-mm-dd
+    initialDate = '-'.join(reversed(initialDateArray))
+
+    finalDateString = term.findtext('dataFim')
+    finalDate = ''
+    if not finalDateString.strip():
+        #Verifies if the finalDate is empty by removing all useless characters and checking if the string is empty
+        finalDate = None
+    else:
+        finalDate = '-'.join(reversed(finalDateString.split('/')))
+        #format form dd/mm/yyyy to yyyy-mm-dd
+
+    birthDateArray = deputyDataTree.findtext('dataNascimento').split('/')
+    birthDate = '-'.join(reversed(birthDateArray))
+    #format form dd/mm/yyyy to yyyy-mm-dd
+
+    print("Inserting info from Deputy " + politicalName + " on database...")
+    newPerson = PersonDTO(name, politicalName, birthDate, gender, email, photoUrl, profession)
+    personId = PersonDAO.insertPersonOnDB(newPerson)
+
+    newFederalDeputyTerm = FederalDeputyTermDTO(chamberId, personId, state, initialDate, finalDate)
+    FederalDeputyTermDAO.inserTermOnDB(newFederalDeputyTerm)
+    
