@@ -17,3 +17,18 @@ class FederalDeputyTermDTO:
         self.state = state
         self.initialDate = initialDate
         self.finalDate = finalDate
+
+class ChamberAgencyDTO:
+    'Class used to store and trasfer data of a angecy from the Deputies Chamber'
+    def __init__(self, id, acronym, description, active):
+        self.id = id
+        self.acronym = acronym
+        self.description = description
+        self.active = active
+
+class FedDeputyAgencyParticipationDTO:
+    'Class used to store and trasfer the relation between a federal deputy term and an agency'
+    def __init__(self, federalDeputyTermId, chamberAgencyId, role):
+        self.federalDeputyTermId = federalDeputyTermId
+        self.chamberAgencyId = chamberAgencyId
+        self.role = role

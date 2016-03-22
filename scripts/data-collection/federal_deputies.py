@@ -7,11 +7,9 @@ from model import *
 print('Downloading general deputies info...')
 deputiesReader = urllib2.urlopen('http://www.camara.gov.br/SitCamaraWS/Deputados.asmx/ObterDeputados')
 deputiesXml = deputiesReader.read()
-print('Parsing general deputies file...')
+print('Parsing deputies\' information...')
 deputiesDataTree = ElementTree.fromstring(deputiesXml)
 
-personsList = []
-federalDeputyTermList = []
 i = 0
 for deputy in deputiesDataTree:
     chamberId = deputy.findtext('ideCadastro')
@@ -60,5 +58,4 @@ for deputy in deputiesDataTree:
     personId = PersonDAO.insertPersonOnDB(newPerson)
 
     newFederalDeputyTerm = FederalDeputyTermDTO(chamberId, personId, state, initialDate, finalDate)
-    FederalDeputyTermDAO.inserTermOnDB(newFederalDeputyTerm)
-    
+    FederalDeputyTermDAO.insertTermOnDB(newFederalDeputyTerm)
