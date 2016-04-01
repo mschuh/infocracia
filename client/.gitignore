@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+logs/*
+!.gitkeep
+node_modules/
+bower_components/
+tmp
+.DS_Store
+.idea
+app/jspm_packages
+*~
+=======
+*.pyc
+>>>>>>> 1a6bf6ea3174baca73611a43e0aba550971f693b
