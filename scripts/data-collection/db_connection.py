@@ -115,9 +115,6 @@ class FedDeputyAgencyParticipationDAO:
                           "(federal_deputy_term_id, agency_id, role) "
                           "VALUES (%(federalDeputyTermId)s, %(chamberAgencyId)s, %(role)s)")
 
-        federalDeputyTermDTO = fedDepAgParticipationDTO.fedDepAgParticipationDTO
-        chamberAgencyDTO = fedDepAgParticipationDTO.chamberAgencyDTO
-
         cursor.execute(addAgencyRequest, fedDeputyAgencyParticipationDTO.__dict__)
         cnx.commit()
         cnx.close()
