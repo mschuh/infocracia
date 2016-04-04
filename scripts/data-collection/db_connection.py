@@ -22,9 +22,18 @@ class PersonDAO:
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
-        addPersonRequest = ("INSERT INTO person "
-                            "(name, political_name, birth_date, gender, email, photo_url, profession) "
-                            "VALUES (%(name)s, %(politicalName)s, %(birthDate)s, %(gender)s, %(email)s, %(photoUrl)s, %(profession)s)")
+        addPersonRequest = ""
+        if not personDTO.profession:
+            addPersonRequest = ("INSERT INTO person "
+                                "(name, political_name, birth_date, gender, email, photo_url, profession) "
+                                "VALUES (%(name)s, %(politicalName)s, %(birthDate)s, %(gender)s, %(email)s,"
+                                "%(photoUrl)s, NULL)")
+        else:
+            addPersonRequest = ("INSERT INTO person "
+                                "(name, political_name, birth_date, gender, email, photo_url, profession) "
+                                "VALUES (%(name)s, %(politicalName)s, %(birthDate)s, %(gender)s, %(email)s,"
+                                "%(photoUrl)s, %(profession)s)")
+
         cursor.execute(addPersonRequest, personDTO.__dict__)
         id = cursor.lastrowid
         cnx.commit()
@@ -116,5 +125,22 @@ class FedDeputyAgencyParticipationDAO:
                           "VALUES (%(federalDeputyTermId)s, %(chamberAgencyId)s, %(role)s)")
 
         cursor.execute(addAgencyRequest, fedDeputyAgencyParticipationDTO.__dict__)
+        cnx.commit()
+        cnx.close()
+
+class SenatorTermDAO:
+    'Data access object for senator term, include the methods for inserting terms in the DB'
+    @staticmethod
+    def insertTermOnDB(senatorTermDTO):
+        #insert a federal deputy term on the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+
+        addTermRequest = ("INSERT INTO senator_term "
+                          "(id, person_id, state, initial_date, final_date) "
+                          "VALUES (%(id)s, %(personId)s, %(state)s, %(initialDate)s, %(finalDate)s)")
+
+        cursor.execute(addTermRequest, senatorTermDTO.__dict__)
         cnx.commit()
         cnx.close()

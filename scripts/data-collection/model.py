@@ -10,7 +10,7 @@ class PersonDTO:
         self.profession = profession
 
 class FederalDeputyTermDTO:
-    'Class used to store and transfer the data of a term of Federal Deputy, it has the same fields as out FDT table'
+    'Class used to store and transfer the data of a term of Federal Deputy'
     def __init__(self, id, personId, state, initialDate, finalDate=None):
         self.id = id
         self.personId = personId
@@ -19,7 +19,7 @@ class FederalDeputyTermDTO:
         self.finalDate = finalDate
 
 class ChamberAgencyDTO:
-    'Class used to store and trasfer data of a angecy from the Deputies Chamber'
+    'Class used to store and trasfer data of an angecy from the Deputies Chamber'
     def __init__(self, id, acronym, description, active):
         self.id = id
         self.acronym = acronym
@@ -32,3 +32,12 @@ class FedDeputyAgencyParticipationDTO:
         self.federalDeputyTermId = federalDeputyTermId
         self.chamberAgencyId = chamberAgencyId
         self.role = role
+
+class SenatorTermDTO:
+    'Class used to store and trasfer the data of a term of Senator'
+    def __init__(self, id, personId, state, initialDate, finalDate):
+        self.id = id
+        self.personId = personId
+        self.state = state
+        self.initialDate = initialDate
+        self.finalDate = finalDate
