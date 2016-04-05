@@ -1,0 +1,40 @@
+<md-toolbar layout-align="center center" class="mainHeader"  layout="row">
+     <md-menu-bar flex="none">
+       <md-menu>
+	 <button ng-click="$mdOpenMenu()">
+	   <i class="material-icons md-36">view_headline</i>
+	   
+	 </button>
+	 <md-menu-content>
+	   <md-menu-item>
+             <md-button ng-click="ctrl.sampleAction('share', $event)">
+               Home 
+             </md-button>
+	   </md-menu-item>
+	   <md-menu-item>
+             <md-button ng-click="ctrl.sampleAction('share', $event)">
+               Manifesto
+             </md-button>
+	   </md-menu-item>
+	   <md-menu-divider></md-menu-divider>
+	   <md-menu-item>
+             <md-button ng-click="ctrl.sampleAction('share', $event)">
+               Aviso legal
+             </md-button>
+	   </md-menu-item>
+	   <md-menu-item>
+             <md-button ng-click="ctrl.sampleAction('share', $event)">
+               Termos de uso
+             </md-button>
+	   </md-menu-item>
+	   <md-menu-item>
+             <md-button ng-click="ctrl.sampleAction('share', $event)">
+               Politica de privacidade
+             </md-button>
+	   </md-menu-item>   
+	 </md-menu-content>
+       </md-menu>
+     </md-menu-bar>
+      <md-icon class="logo" flex="none" md-svg-icon="logo"></md-icon>
+      <md-content flex="grow"></md-content>
+   </md-toolbar>
