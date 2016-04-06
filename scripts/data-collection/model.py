@@ -41,3 +41,11 @@ class SenatorTermDTO:
         self.state = state
         self.initialDate = initialDate
         self.finalDate = finalDate
+
+class SenateCommissionDTO:
+    'Class used to store and trasfer data of a commission from the Senate'
+    def __init__(self, id, acronym, name, active):
+        self.id = id
+        self.acronym = acronym
+        self.name = name
+        self.active = active

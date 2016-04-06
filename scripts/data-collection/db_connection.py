@@ -81,7 +81,7 @@ class ChamberAgencyDAO:
     'Data access object for chamber agency, include the methods for inserting and retrieving an agency from the DB'
     @staticmethod
     def insertAgencyOnDB(chamberAgencyDTO):
-        #insert a federal deputy term on the database
+        #insert a deputies' chamber agency in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
@@ -96,7 +96,7 @@ class ChamberAgencyDAO:
 
     @staticmethod
     def findAgencyById(id):
-        #returns a FederalDeputyTermDTO containing the data corresponding to the passed id
+        #returns a ChamberAgencyDTO containing the data corresponding to the passed id
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
@@ -115,7 +115,7 @@ class FedDeputyAgencyParticipationDAO:
     """
     @staticmethod
     def insertParticipationOnDB(fedDeputyAgencyParticipationDTO):
-        #insert a federal deputy term on the database
+        #insert a deputies' chamber agency participation in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
@@ -129,10 +129,10 @@ class FedDeputyAgencyParticipationDAO:
         cnx.close()
 
 class SenatorTermDAO:
-    'Data access object for senator term, include the methods for inserting terms in the DB'
+    'Data access object for senator term'
     @staticmethod
     def insertTermOnDB(senatorTermDTO):
-        #insert a federal deputy term on the database
+        #insert a senator term in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
@@ -142,5 +142,22 @@ class SenatorTermDAO:
                           "VALUES (%(id)s, %(personId)s, %(state)s, %(initialDate)s, %(finalDate)s)")
 
         cursor.execute(addTermRequest, senatorTermDTO.__dict__)
+        cnx.commit()
+        cnx.close()
+
+class SenateCommissionDAO:
+    'Data access object for a commission from the senate'
+    @staticmethod
+    def insertCommissionOnDB(senateCommissionDTO):
+        #insert a senate commission in the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+
+        addCommissionRequest = ("INSERT INTO senate_commission "
+                          "(id, acronym, name, active) "
+                          "VALUES (%(id)s, %(acronym)s, %(name)s, %(active)s)")
+
+        cursor.execute(addCommissionRequest, senateCommissionDTO.__dict__)
         cnx.commit()
         cnx.close()
