@@ -8,11 +8,24 @@
 
 /* main header directive */
 .mainHeader{ height: 60px; width: 100%; }
-.mainHeader .logo { height: 56px; }
+.mainHeader .logo { height: 56px; width: 56px }
 
-
+.main-title .logo { height: 76px; width: 76px; padding-left: 10px }
 
 /* info zone directive */
 .infozone-image-content{  width: 68px; height: 68px; padding: 5px; }
 .infozone-image{ width: 68px; height: 68px; }
 .infozone-textinfo { width: 300px; }
+
+/* politician page */
+.page-politician .politician-header-gt-xs{ border-bottom: 1px solid #F0F0F0; background: #f6f6f6 !important }
+.page-politician .politician-header-content-gt-xs{ width: 800px; }
+.page-politician .politician-personal-info-gt-xs{  }
+.page-politician .politician-picture-gt-xs{ width: 200px; height: 200px; }
+.page-politician .politician-picture-gt-xs img{ width: 100%; height: 100%; }
+.page-politician .politician-personal-info-gt-xs{ padding: 10px; }
+
+.page-politician .politician-header-xs{ border-bottom: 1px solid #F0F0F0; }
+.page-politician .politician-name-xs{ text-align: center; background: #f6f6f6 !important  }
+.page-politician .politician-picture-xs{ width: 100%; }
+.page-politician .politician-picture-xs img{ width: 100%; }
