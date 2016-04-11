@@ -49,3 +49,10 @@ class SenateCommissionDTO:
         self.acronym = acronym
         self.name = name
         self.active = active
+
+class SenateCommissionParticipationDTO:
+    'Class used to store and trasfer the relation between a senator term and a senate comission'
+    def __init__(self, senatorTermId, senateCommissionId, role):
+        self.senatorTermId = senatorTermId
+        self.senateCommissionId = senateCommissionId
+        self.role = role
