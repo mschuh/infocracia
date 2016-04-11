@@ -7,10 +7,10 @@ app.config(function ($stateProvider,$urlRouterProvider) {
 	    templateUrl: "src/home/home.html",
 	    controller: 'HomeController'
 	})
-        .state('politic', {
-	    url: "/politic",
-	    templateUrl: "src/politic/politic.html",
-	    controller: 'PoliticController'
+        .state('politician', {
+	    url: "/politician",
+	    templateUrl: "src/politician/politician.html",
+	    controller: 'PoliticianController'
 	})
 
 });

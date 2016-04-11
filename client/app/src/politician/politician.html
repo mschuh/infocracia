@@ -1,0 +1,21 @@
+<div class="page-politician">
+  <pl-main-header flex="grow"></pl-main-header>
+  <div class="politician-header-gt-xs" hide show-gt-xs layout="row" layout-align="center">
+    <div class="politician-header-content-gt-xs" layout="row">
+      <div class="politician-picture-gt-xs" flex="none">
+	<img ng-src="{{politician.photoUrl}}" />
+      </div>  
+      <div class="politician-personal-info-gt-xs" flex layout="column" layout-align="start end">
+	<div class="info md-display-2" ng-show="politician.name">{{politician.name}}</div>
+	<div class="info md-body-1" ng-show="politician.party">{{politician.party}}</div>
+	<div class="info md-body-1" ng-show="politician.email">{{politician.email}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="politician-header-xs" hide show-xs>
+    <div class="politician-picture-xs">
+      <img ng-src="{{politician.photoUrl}}" />
+    </div>  
+    <div class="politician-name-xs md-display-2">{{politician.name}}</div>
+  </div>
+</div>
