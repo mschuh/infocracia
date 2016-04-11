@@ -23,3 +23,37 @@ for commission in commissionsDataTree:
     print('Inserting info from ' + name + ' into the database...')
     newCommission = SenateCommissionDTO(senateId, acronym, name, active)
     SenateCommissionDAO.insertCommissionOnDB(newCommission)
+
+    rolesMapping = {'PRESIDENTE' : 'P', 'VICE-PRESIDENTE' : 'V', 'RELATOR' : 'R'}
+    specialMembersIds = []
+    specialMembers = commission.find('Cargos')
+    for specialMember in specialMembers:
+        specialMemberId = specialMember.findtext('Http')
+        fullRoleName = specialMember.findtext('Cargo')
+        specialMemberRole = rolesMapping[fullRoleName]
+
+        #some slots on the xml represent vacancies and therefore don't have ids
+        if not specialMemberId:
+            continue
+
+        print('Inserting ' + fullRoleName + ' ' + specialMember.findtext('NomeParlamentar') + ' relation into DB')
+        memberParticipation = SenateCommissionParticipationDTO(specialMemberId, senateId, specialMemberRole)
+        SenateCommissionParticipationDAO.insertParticipationOnDB(memberParticipation)
+
+        specialMembersIds.append(int(specialMemberId))
+
+    membersBlocks = commission.find('MembrosBloco')
+
+    for membersBlock in membersBlocks:
+        actualMembers = membersBlock.find('Membros')
+        for member in actualMembers:
+            memberId = member.findtext('Http')
+
+            #some slots on the xml represent vacancies and therefore don't have ids
+            if not memberId:
+                continue
+            #in the xml the special members are included in the members' tree
+            if int(memberId) not in specialMembersIds:
+                print('Inserting member ' + member.findtext('NomeParlamentar') + ' relation into DB' )
+                memberParticipation = SenateCommissionParticipationDTO(memberId, senateId, 'M')
+                SenateCommissionParticipationDAO.insertParticipationOnDB(memberParticipation)

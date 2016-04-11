@@ -120,11 +120,11 @@ class FedDeputyAgencyParticipationDAO:
         cnx = dbConnection.connection
         cursor = cnx.cursor()
 
-        addAgencyRequest = ("INSERT INTO federal_deputy_term_agency_participation "
+        addParticipationRequest = ("INSERT INTO federal_deputy_term_agency_participation "
                           "(federal_deputy_term_id, agency_id, role) "
                           "VALUES (%(federalDeputyTermId)s, %(chamberAgencyId)s, %(role)s)")
 
-        cursor.execute(addAgencyRequest, fedDeputyAgencyParticipationDTO.__dict__)
+        cursor.execute(addParticipationRequest, fedDeputyAgencyParticipationDTO.__dict__)
         cnx.commit()
         cnx.close()
 
@@ -159,5 +159,25 @@ class SenateCommissionDAO:
                           "VALUES (%(id)s, %(acronym)s, %(name)s, %(active)s)")
 
         cursor.execute(addCommissionRequest, senateCommissionDTO.__dict__)
+        cnx.commit()
+        cnx.close()
+
+class SenateCommissionParticipationDAO:
+    """
+    Data access object for senator participations on commissions, include the methods for inserting and retrieving a
+    participation from the data base
+    """
+    @staticmethod
+    def insertParticipationOnDB(senateCommissionParticipationDTO):
+        #insert a senate commision participation in the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+
+        addParticipationRequest = ("INSERT INTO senator_term_commission_participation "
+                          "(senator_term_id, senate_commission_id, role) "
+                          "VALUES (%(senatorTermId)s, %(senateCommissionId)s, %(role)s)")
+
+        cursor.execute(addParticipationRequest, senateCommissionParticipationDTO.__dict__)
         cnx.commit()
         cnx.close()
