@@ -1,11 +1,12 @@
 'use strict';
 
- app.controller('PoliticController',
+ app.controller('PoliticianController',
       ['$scope', '$timeout', '$location', '$state', '$window',
       function PoliticController($scope, $timeout, $location, $state, $window) {
-	  $scope.politic = { 
+	  $scope.personalData = { 
 	      name: "Joao da silva",
-	      photo: "http://zblogged.com/wp-content/uploads/2015/11/17.jpg"
+	      photoUrl: "http://zblogged.com/wp-content/uploads/2015/11/17.jpg",
+	      party: "PMDB"
 	  };
 
   }]);

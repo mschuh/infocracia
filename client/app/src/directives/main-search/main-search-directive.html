@@ -1,0 +1,21 @@
+<md-autocomplete class="searchEntityAutocomplete"
+          md-selected-item="search.selectedEntity"
+          md-search-text="search.searchEntityText"
+          md-items="entity in search.querySearchEntity(search.searchEntityText)"
+          md-item-text="entity.name"
+          md-min-length="1"
+          placeholder="Pesquise um político, partido ou instituição!">
+        <md-item-template>
+	  <div layout="row" layout-align="start center">
+	    <div flex="none" class="autocomplete-image-content">
+	      <img class="autocomplete-image" ng-src="{{entity.photoUrl}}">
+	    </div>
+	    <div flex md-highlight-text="search.searchEntityText" md-highlight-flags="^i"> 
+	      {{entity.name}}
+	    </div>
+	  </div>
+        </md-item-template>
+        <md-not-found>
+          Ops! Sua busca nao retornou nenhum resultado!
+        </md-not-found>
+      </md-autocomplete>

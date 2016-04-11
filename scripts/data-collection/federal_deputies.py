@@ -53,7 +53,7 @@ for deputy in deputiesDataTree:
     birthDate = '-'.join(reversed(birthDateArray))
     #format form dd/mm/yyyy to yyyy-mm-dd
 
-    print("Inserting info from Deputy " + politicalName + " on database...")
+    print('Inserting info from Deputy ' + politicalName + ' into database...')
     newPerson = PersonDTO(name, politicalName, birthDate, gender, email, photoUrl, profession)
     personId = PersonDAO.insertPersonOnDB(newPerson)
 

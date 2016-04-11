@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ElementTree
 import urllib2
+import sys
 
 from db_connection import *
 from model import *
@@ -43,30 +44,55 @@ for agency in agenciesDataTree:
         print(acronym + ' has no member registered on the chamber')
         continue
 
-    idPresident = agencyMembers.find('Presidente').findtext('ideCadastro')
-    print('Inserting president ' + agencyMembers.find('Presidente').findtext('nome') + ' relation into DB')
-    presidentParticipation = FedDeputyAgencyParticipationDTO(idPresident, chamberId, 'P')
-    FedDeputyAgencyParticipationDAO.insertParticipationOnDB(presidentParticipation)
+    try:
+        idPresident = agencyMembers.find('Presidente').findtext('ideCadastro')
+        print('Inserting president ' + agencyMembers.find('Presidente').findtext('nome') + ' relation into DB')
+        presidentParticipation = FedDeputyAgencyParticipationDTO(idPresident, chamberId, 'P')
+        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(presidentParticipation)
+    except:
+        print("Impossible to add a participation for deputy " + member.findtext('nome'))
+        print(sys.exc_info()[0])
+        print("Probably, the deputy you are trying to attribute is not on the deputies' table")
 
-    idFirstVp = agencyMembers.find('PrimeiroVice-Presidente').findtext('ideCadastro')
-    print('Inserting first VP ' + agencyMembers.find('PrimeiroVice-Presidente').findtext('nome') + ' relation into DB')
-    firstVpParticipation = FedDeputyAgencyParticipationDTO(idFirstVp, chamberId, 'F')
-    FedDeputyAgencyParticipationDAO.insertParticipationOnDB(firstVpParticipation)
+    try:
+        idFirstVp = agencyMembers.find('PrimeiroVice-Presidente').findtext('ideCadastro')
+        print('Inserting first VP ' + agencyMembers.find('PrimeiroVice-Presidente').findtext('nome') + ' relation into DB')
+        firstVpParticipation = FedDeputyAgencyParticipationDTO(idFirstVp, chamberId, 'F')
+        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(firstVpParticipation)
+    except:
+        print("Impossible to add a participation for deputy " + member.findtext('nome'))
+        print(sys.exc_info()[0])
+        print("Probably, the deputy you are trying to attribute is not on the deputies' table")
 
-    idSecondVp = agencyMembers.find('SegundoVice-Presidente').findtext('ideCadastro')
-    print('Inserting second VP ' + agencyMembers.find('SegundoVice-Presidente').findtext('nome') + ' relation into DB')
-    secondVpParticipation = FedDeputyAgencyParticipationDTO(idSecondVp, chamberId, 'S')
-    FedDeputyAgencyParticipationDAO.insertParticipationOnDB(secondVpParticipation)
+    try:
+        idSecondVp = agencyMembers.find('SegundoVice-Presidente').findtext('ideCadastro')
+        print('Inserting second VP ' + agencyMembers.find('SegundoVice-Presidente').findtext('nome') + ' relation into DB')
+        secondVpParticipation = FedDeputyAgencyParticipationDTO(idSecondVp, chamberId, 'S')
+        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(secondVpParticipation)
+    except:
+        print("Impossible to add a participation for deputy " + member.findtext('nome'))
+        print(sys.exc_info()[0])
+        print("Probably, the deputy you are trying to attribute is not on the deputies' table")
 
-    idThirdVp = agencyMembers.find('TerceiroVice-Presidente').findtext('ideCadastro')
-    print('Inserting third VP ' + agencyMembers.find('TerceiroVice-Presidente').findtext('nome') + ' relation into DB')
-    thirdVpParticipation = FedDeputyAgencyParticipationDTO(idThirdVp, chamberId, 'T')
-    FedDeputyAgencyParticipationDAO.insertParticipationOnDB(thirdVpParticipation)
+    try:
+        idThirdVp = agencyMembers.find('TerceiroVice-Presidente').findtext('ideCadastro')
+        print('Inserting third VP ' + agencyMembers.find('TerceiroVice-Presidente').findtext('nome') + ' relation into DB')
+        thirdVpParticipation = FedDeputyAgencyParticipationDTO(idThirdVp, chamberId, 'T')
+        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(thirdVpParticipation)
+    except:
+        print("Impossible to add a participation for deputy " + member.findtext('nome'))
+        print(sys.exc_info()[0])
+        print("Probably, the deputy you are trying to attribute is not on the deputies' table")
 
-    idRapporteur = agencyMembers.find('Relator').findtext('ideCadastro')
-    print('Inserting rapporteur ' + agencyMembers.find('Relator').findtext('nome') + ' relation into DB')
-    rapporteurParticipation = FedDeputyAgencyParticipationDTO(idRapporteur, chamberId, 'R')
-    FedDeputyAgencyParticipationDAO.insertParticipationOnDB(rapporteurParticipation)
+    try:
+        idRapporteur = agencyMembers.find('Relator').findtext('ideCadastro')
+        print('Inserting rapporteur ' + agencyMembers.find('Relator').findtext('nome') + ' relation into DB')
+        rapporteurParticipation = FedDeputyAgencyParticipationDTO(idRapporteur, chamberId, 'R')
+        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(rapporteurParticipation)
+    except:
+        print("Impossible to add a participation for deputy " + member.findtext('nome'))
+        print(sys.exc_info()[0])
+        print("Probably, the deputy you are trying to attribute is not on the deputies' table")
 
     for member in agencyMembers.findall('membro'):
         idMember = member.findtext('ideCadastro')
@@ -75,4 +101,6 @@ for agency in agenciesDataTree:
         try:
             FedDeputyAgencyParticipationDAO.insertParticipationOnDB(memberParticipation)
         except:
-            print(idMember)
+            print("Impossible to add a participation for deputy " + member.findtext('nome'))
+            print(sys.exc_info()[0])
+            print("Probably, the deputy you are trying to attribute is not on the deputies' table")

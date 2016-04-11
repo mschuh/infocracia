@@ -23,14 +23,14 @@
         }
     </style>
 
+ 
   </head>
 
   <body ng-app="politics"  ng-cloak >
 
      <div ui-view="">
      </div>
-
-    <script src="../node_modules/angular/angular.js"></script>
+   <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-aria/angular-aria.js"></script>
     <script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
@@ -38,12 +38,19 @@
     <script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     
     <script src="./src/app.js"></script>
+    <script src="./src/filters/general-filters.js"></script>
+    <script src="./src/directives/class-by-media/class-by-media.js"></script>
+    <script src="./src/directives/main-header/main-header-directive.js"></script>
+    <script src="./src/directives/main-search/main-search-directive.js"></script> 
+    <script src="./src/directives/infozone/infozone-directive.js"></script>
     <script src="./src/configs/routes.js"></script>
-
+   
+    
 
     <script src="./src/home/homeController.js"></script>
-    <script src="./src/politic/politicController.js"></script>
-    
+    <script src="./src/politician/politicianController.js"></script>
+   
     <script src="./src/configs/material.js"></script>
+    
   </body>
 </html>
