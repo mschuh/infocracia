@@ -1,6 +1,6 @@
 <div class="page-home">
   <pl-main-header flex="grow"></pl-main-header>
-  <div layout-padding="20" layout="column" layout-align="start stretch">
+  <div layout-padding="20" layout="column" layout-align="start center">
     <div  layout="row" class="main-title" layout-align="center center">
       <div layout="row" layout-align="center center">
 	<div class="md-display-3" flex="none">Infocracia</div> 
@@ -8,14 +8,42 @@
       </div>
     </div>
     <div  layout="row" hide-xs layout-align="center start">
-      <span class="md-title">Quem define o futuro do nosso pais é voce!</h1>  
+      <span class="md-title">Quem define o futuro do nosso pais é voce!</h1> 
     </div>
-    <div layout="row" layout-align="center center">
-      <md-content flex="90" flex-gt-sm="50">
+    <div layout="row" class-gt-sm="std-width" layout-align="center center">
+      <md-content flex="100">
 	<pl-main-search></pl-main-search> 
       </md-content>
     </div>
-    <div layout="row" layout-xs="column">
+    <div class-gt-sm="std-width" layout="row" layout-align="center center" layout-xs="column">
+      <div flex layout="column">
+	<div class="md-title center">Mais Pesquisados</div>
+	  <div layout="row">
+	    <div flex layout="column">
+	      <div ng-repeat="politician in popularPoliticians | limitTo:3" layout="row" layout-align="start center">
+		<div flex="none" class="popular-politician-image-content">
+		  <img  ng-src="{{politician.photoUrl}}" />
+		</div>
+		<div flex> 
+		  {{politician.name}}
+		</div>
+	      </div>
+	    </div>
+	    <div flex layout="column">
+	      <div ng-repeat="politician in popularPoliticians | startFrom : 3" layout="row" layout-align="start center">
+		<div flex="none" class="popular-politician-image-content">
+		  <img  ng-src="{{politician.photoUrl}}" />
+		</div>
+		<div flex> 
+		  {{politician.name}}
+		</div>
+	      </div>
+	    </div>
+	  </div>
+       </div>
+       <div flex></div>
+    </div>
+    <div class-gt-sm="std-width" layout="row" layout-align="center center" layout-xs="column">
       <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
       <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
       <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
