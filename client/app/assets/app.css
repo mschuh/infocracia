@@ -3,7 +3,9 @@
 /* configs */
 .std-width{ width: 960px; }
 .width-100{ width: 100%;}
-.center{ text-align: center }
+.grey{ background: #f6f6f6 !important }
+.no-horizontal-padding { padding-left:0 !important; padding-right: 0 !important; }
+.no-padding { padding:0 !important; }
 
 .autocomplete-image-content{ width: 48px; height: 48px; padding: 5px;}   
 .autocomplete-image{ width: 100%; height: 100%; }
@@ -11,8 +13,8 @@
 
 
 /* main header directive */
-.mainHeader{ height: 60px; width: 100%; }
-.mainHeader .logo { height: 56px; width: 56px }
+.main-header{ height: 60px; width: 100%; }
+.main-header .logo { height: 56px; width: 56px }
 
 .main-title .logo { height: 76px; width: 76px; padding-left: 10px }
 
@@ -28,7 +30,7 @@
 
 
 /* politician page */
-.page-politician .politician-header-gt-xs{ border-bottom: 1px solid #F0F0F0; background: #f6f6f6 !important }
+.page-politician .politician-header-gt-xs{ border-bottom: 1px solid #F0F0F0;}
 .page-politician .politician-personal-info-gt-xs{  }
 .page-politician .politician-picture-gt-xs{ width: 200px; height: 200px; }
 .page-politician .politician-picture-gt-xs img{ width: 100%; height: 100%; }

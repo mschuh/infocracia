@@ -1,25 +1,25 @@
 <div class="page-home">
   <pl-main-header flex="grow"></pl-main-header>
-  <div layout-padding="20" layout="column" layout-align="start center">
-    <div  layout="row" class="main-title" layout-align="center center">
+  <div layout="column" layout-padding layout-align-xs="start" layout-align-gt-xs="start center">
+    <div flex class="no-horizontal-padding main-title" layout="row" layout-align="center center">
       <div layout="row" layout-align="center center">
 	<div class="md-display-3" flex="none">Infocracia</div> 
 	<md-icon flex="none" class="logo" md-svg-icon="logo"></md-icon>
       </div>
     </div>
-    <div  layout="row" hide-xs layout-align="center start">
+    <div flex class="no-horizontal-padding" layout="row" hide-xs layout-align="center start">
       <span class="md-title">Quem define o futuro do nosso pais é voce!</h1> 
     </div>
-    <div layout="row" class-gt-sm="std-width" layout-align="center center">
-      <md-content flex="100">
+    <div flex class="no-horizontal-padding" layout="row" class-gt-sm="std-width" layout-align="center center">
+      <md-content flex="grow">
 	<pl-main-search></pl-main-search> 
       </md-content>
     </div>
-    <div class-gt-sm="std-width" layout="row" layout-xs="column">
+    <div flex style="margin-bottom: 8px;" class="no-padding md-whiteframe-z1" class-gt-sm="std-width" layout="row" layout-xs="column">
       <md-progress-circular flex ng-if="!popularPoliticians" md-mode="indeterminate"></md-progress-circular>
       <div flex layout="column" ng-if="popularPoliticians">
 	<md-toolbar layout="row"  class="md-warn md-hue-3">
-	  <div class="md-toolbar-tools">
+	  <div class="md-toolbar-tools"> 
             <span>Políticos mais pesquisados</span>
 	  </div>
 	</md-toolbar>
@@ -33,6 +33,7 @@
 	  </md-list-item>
 	</md-list>
       </div>
+      <md-divider></md-divider>
       <md-progress-circular flex ng-if="!popularParties" md-mode="indeterminate"></md-progress-circular>
       <div flex layout="column" ng-if="popularParties">
 	<md-toolbar layout="row"  class="md-warn md-hue-1">
@@ -51,10 +52,12 @@
 	</md-list>
       </div>
     </div>
-    <div class-gt-sm="std-width" layout="row" layout-align="start" layout-xs="column">
-      <pl-infozone flex title="Quem Somos?" text="Et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="./assets/img/quemsomos.png"></pl-infozone>
-      <pl-infozone flex title="Origem dos Dados..." text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique." photo="./assets/img/origemdosdados.png"></pl-infozone>
-      <pl-infozone flex title="Para entender melhor!" text="Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna." photo="./assets/img/paraentendermelhor.png"></pl-infozone>
-    </div> 
+    <div flex class="grey no-horizontal-padding" style="width: 100%" layout-align="center" layout="row">
+      <div class-gt-sm="std-width" class="no-horizontal-padding" layout="row" layout-align="start" layout-xs="column">
+	<pl-infozone flex title="Quem Somos?" text="Et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="./assets/img/quemsomos.png"></pl-infozone>
+	<pl-infozone flex title="Origem dos Dados..." text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique." photo="./assets/img/origemdosdados.png"></pl-infozone>
+	<pl-infozone flex title="Para entender melhor!" text="Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna." photo="./assets/img/paraentendermelhor.png"></pl-infozone>
+      </div> 
+    </div>
   </div>
 </div>
