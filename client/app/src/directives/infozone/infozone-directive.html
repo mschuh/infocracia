@@ -1,13 +1,18 @@
-<div layout="column" layout-align="start center">
-      <div flex="none" layout="row" layout-align="center center">
-	<div flex="none" class="infozone-image-content">
-	  <img class="infozone-image" ng-src="{{photo}}" />
-	</div>
-	<div flex class="md-title"> 
-	  {{title}}
-	</div>
-      </div>
-      <div flex class="infozone-textinfo md-body-1">
-	 {{text}}
-      </div>
-    </div>
+<md-card>
+  <img ng-src="{{photo}}" class="md-card-image" alt="{{title}}">
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">{{title}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p>
+      {{text}}
+    </p>
+  </md-card-content>
+  <md-card-actions layout="row" layout-align="end center">
+    <md-button class="md-icon-button" aria-label="Share">
+      <md-icon md-svg-icon="share"></md-icon>
+    </md-button>
+  </md-card-actions>
+</md-card>

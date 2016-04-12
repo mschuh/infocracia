@@ -15,38 +15,46 @@
 	<pl-main-search></pl-main-search> 
       </md-content>
     </div>
-    <div class-gt-sm="std-width" layout="row" layout-align="center center" layout-xs="column">
-      <div flex layout="column">
-	<div class="md-title center">Mais Pesquisados</div>
-	  <div layout="row">
-	    <div flex layout="column">
-	      <div ng-repeat="politician in popularPoliticians | limitTo:3" layout="row" layout-align="start center">
-		<div flex="none" class="popular-politician-image-content">
-		  <img  ng-src="{{politician.photoUrl}}" />
-		</div>
-		<div flex> 
-		  {{politician.name}}
-		</div>
-	      </div>
-	    </div>
-	    <div flex layout="column">
-	      <div ng-repeat="politician in popularPoliticians | startFrom : 3" layout="row" layout-align="start center">
-		<div flex="none" class="popular-politician-image-content">
-		  <img  ng-src="{{politician.photoUrl}}" />
-		</div>
-		<div flex> 
-		  {{politician.name}}
-		</div>
-	      </div>
-	    </div>
+    <div class-gt-sm="std-width" layout="row" layout-xs="column">
+      <md-progress-circular flex ng-if="!popularPoliticians" md-mode="indeterminate"></md-progress-circular>
+      <div flex layout="column" ng-if="popularPoliticians">
+	<md-toolbar layout="row"  class="md-warn md-hue-3">
+	  <div class="md-toolbar-tools">
+            <span>Políticos mais pesquisados</span>
 	  </div>
-       </div>
-       <div flex></div>
+	</md-toolbar>
+	 <md-list flex>
+	  <md-list-item class="md-2-line" ng-repeat="politician in popularPoliticians | limitTo:6" ng-click="null">
+	    <img ng-src="{{politician.photoUrl}}" class="md-avatar" alt="{{politician.name}}" />
+	    <div class="md-list-item-text" layout="column">
+	      <h3>{{ politician.name }}</h3>
+	      <p>{{ politician.party }}</p>
+	    </div>
+	  </md-list-item>
+	</md-list>
+      </div>
+      <md-progress-circular flex ng-if="!popularParties" md-mode="indeterminate"></md-progress-circular>
+      <div flex layout="column" ng-if="popularParties">
+	<md-toolbar layout="row"  class="md-warn md-hue-1">
+	  <div class="md-toolbar-tools" class="md-hue-3">
+            <span>Partidos mais pesquisados</span>
+	  </div>
+	</md-toolbar>
+	 <md-list flex>
+	  <md-list-item class="md-2-line" ng-repeat="party in popularParties | limitTo:6" ng-click="null">
+	    <img ng-src="{{party.photoUrl}}" class="md-avatar" alt="{{party.acronym}}" />
+	    <div class="md-list-item-text" layout="column">
+	      <h3>{{ party.acronym }}</h3>
+	      <p>{{ party.members }} membros</p>
+	    </div>
+	  </md-list-item>
+	</md-list>
+      </div>
     </div>
-    <div class-gt-sm="std-width" layout="row" layout-align="center center" layout-xs="column">
-      <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
-      <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
-      <pl-infozone flex title="Quem Somos??" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="http://www.clipartbest.com/cliparts/dir/aoz/diraoza9T.png"></pl-infozone>
+    <div class-gt-sm="std-width" layout="row" layout-align="start" layout-xs="column">
+      <pl-infozone flex title="Quem Somos?" text="Et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam." photo="./assets/img/quemsomos.png"></pl-infozone>
+      <pl-infozone flex title="Origem dos Dados..." text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique." photo="./assets/img/origemdosdados.png"></pl-infozone>
+      <pl-infozone flex title="Para entender melhor!" text="Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna." photo="./assets/img/paraentendermelhor.png"></pl-infozone>
     </div> 
   </div>
 </div>
