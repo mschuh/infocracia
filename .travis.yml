@@ -1,0 +1,2 @@
+language: generic
+before_install: cd scripts/ && make init

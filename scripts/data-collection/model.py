@@ -33,6 +33,21 @@ class FedDeputyAgencyParticipationDTO:
         self.chamberAgencyId = chamberAgencyId
         self.role = role
 
+class PartyDTO:
+    'Class used to store and trasfer the data of a Party on our database, it has the same fields as our party table'
+    def __init__(self, name, acronym, photoUrl):
+        self.name = name
+        self.acronym = acronym
+        self.photoUrl = photoUrl
+
+class FiliationDTO:
+    'Class used to store and trasfer the relation between a person and a party'
+    def __init__(self, initialDate, finalDate, personId, partyId):
+        self.initialDate = initialDate
+        self.finalDate = finalDate
+        self.personId = personId
+        self.partyId = partyId
+
 class SenatorTermDTO:
     'Class used to store and trasfer the data of a term of Senator'
     def __init__(self, id, personId, state, initialDate, finalDate):

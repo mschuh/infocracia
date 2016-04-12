@@ -115,7 +115,7 @@ class FedDeputyAgencyParticipationDAO:
     """
     @staticmethod
     def insertParticipationOnDB(fedDeputyAgencyParticipationDTO):
-        #insert a deputies' chamber agency participation in the database
+        #insert a federal deputy agency participation on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
         cursor = cnx.cursor()
@@ -179,5 +179,47 @@ class SenateCommissionParticipationDAO:
                           "VALUES (%(senatorTermId)s, %(senateCommissionId)s, %(role)s)")
 
         cursor.execute(addParticipationRequest, senateCommissionParticipationDTO.__dict__)
+        cnx.commit()
+        cnx.close()
+
+class PartyDAO:
+    'Data access object for parties, include the methods for inserting and retrieving a party from the data base'
+    @staticmethod
+    def insertPartyOnDB(partyDTO):
+        #insert a party on the database and returns the unique id of this party on the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+        addPartyRequest = ("INSERT INTO party "
+                            "(name, acronym, photo_url)"
+                            "VALUES (%(name)s, %(acronym)s, %(photoUrl)s)")
+        cursor.execute(addPartyRequest, partyDTO.__dict__)
+        id = cursor.lastrowid
+        cnx.commit()
+        cnx.close()
+        return id
+
+    @staticmethod
+    def findPartyOnDB():
+        #returns a PartyDTO according to the search criteria
+        print('Not yet implemented')
+
+class FiliationDAO:
+    """
+    Data access object for person filiation on parties, include the methods for inserting and retrieving a filiation
+    from the data base'
+    """
+    @staticmethod
+    def insertFiliationOnDB(filiationDTO):
+        #insert a filiation on the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+
+        addFiliationRequest = ("INSERT INTO filiation"
+                          "(initial_date, final_date, person_id, party_id) "
+                          "VALUES (%(initialDate)s, %(finalDate)s, %(personId)s, %(partyId)s)")
+
+        cursor.execute(addFiliationRequest, filiationDTO.__dict__)
         cnx.commit()
         cnx.close()
