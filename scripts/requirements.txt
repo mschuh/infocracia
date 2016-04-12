@@ -3,3 +3,4 @@ scrapy
 twisted
 clint
 wikipedia
+chardet
