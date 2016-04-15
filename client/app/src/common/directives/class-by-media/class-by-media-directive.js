@@ -14,6 +14,19 @@
             }
 	}
     ])
+	.directive("classXs", [
+	    "$mdMedia",
+	    function($mdMedia) {
+		if ($mdMedia("xs")) {
+		    return {
+			restrict: "A",
+			link: function(scope, elem, attrs) {
+			    elem.addClass(attrs.classXs);
+			}
+		    };
+		}
+	    }
+	])
     // directive class-gt-sm
 	.directive("classGtSm", [
 	    "$mdMedia",

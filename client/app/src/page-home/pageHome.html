@@ -1,20 +1,17 @@
 <div class="page-home">
-  <pl-main-header flex="grow"></pl-main-header>
+  <pl-main-header></pl-main-header>
   <div layout="column" layout-align-xs="start" layout-align-gt-xs="start center">
-    <div class-gt-sm="home-search-content width-100" layout="column" layout-align="center center">
-      <div class="main-title vertical-padding" layout="row" layout-align="center center">
-	<div layout="row"  layout-align="center center">
-	  <img class="logo" src="./assets/img/logo.png" /> 
+    <div class="home-top-content width-100" layout="row" layout-align="center">
+      <div class-gt-sm="std-width home-logo-content" layout="row" layout-align="center">
+	<div flex="none" class="home-logo">
+	  <img src="./assets/img/logo.png" />
 	</div>
       </div>
-      <div class="vertical-padding" layout="row" hide-xs layout-align="center start">
-	<span class="md-title">Quem define o futuro do nosso pais é voce!</span>
-      </div>
-      <div class="main-search vertical-padding width-100" layout="row"  layout-align="center start">
-	<md-content class-gt-sm="std-width" layout="row">
-	  <pl-main-search flex></pl-main-search> 
-	</md-content>
-      </div>
+    </div>
+    <div class="main-search vertical-padding width-100" layout="row" layout-align="center start">
+      <md-content class-gt-sm="std-width" class-sm="width-100" class-xs="width-100" >
+	<pl-main-search class="width-100"></pl-main-search> 
+      </md-content>
     </div>
     <div flex class-gt-sm="std-width" layout="row" layout-xs="column">
       <md-progress-circular flex ng-hide="pageHome.popularPoliticians.length" md-mode="indeterminate"></md-progress-circular>
