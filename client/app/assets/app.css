@@ -1,22 +1,28 @@
-
-
 /* configs */
+body, html{ background: rgb(250,250,250)}
 .std-width{ width: 960px; }
 .width-100{ width: 100%;}
 .grey{ background: #f6f6f6 !important }
 .no-horizontal-padding { padding-left:0 !important; padding-right: 0 !important; }
+.vertical-padding{ padding-top:8px; padding-bottom: 8px }
 .no-padding { padding:0 !important; }
 
 .autocomplete-image-content{ width: 48px; height: 48px; padding: 5px;}   
 .autocomplete-image{ width: 100%; height: 100%; }
 
+.main-search{ border-bottom: #ccc 1px solid; }
+
+
+.page-home .home-search-content{ 
+
+ }
 
 
 /* main header directive */
 .main-header{ height: 60px; width: 100%; }
 .main-header .logo { height: 56px; width: 56px }
 
-.main-title .logo { height: 76px; width: 76px; padding-left: 10px }
+.main-title .logo { height: 100px; }
 
 /* info zone directive */
 .infozone-image-content{  width: 68px; height: 68px; padding: 5px; }

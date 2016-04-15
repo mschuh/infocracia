@@ -1,16 +1,13 @@
-'use strict';
+(function(){
 
+    'use strict';
 
-var app = angular.module('politics', [
-    'ngMaterial',
-    'ui.router',
-    'ngMdIcons'
-  ]);
+    angular.module('app', [
+	'ngMaterial',
+	'ui.router',
+	'ngMdIcons',
+	'app.pageHome',
+	'app.pagePolitician'
+    ]);
 
-  app.run(function($rootScope, $location, $state, $anchorScroll) {
-      $rootScope.$on( '$stateChangeSuccess', function(e, toState  , toParams
-                                                 , fromState, fromParams) {
-
-      });
-  });
-
+})();

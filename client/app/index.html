@@ -26,7 +26,7 @@
  
   </head>
 
-  <body ng-app="politics"  ng-cloak >
+  <body ng-app="app"  ng-cloak >
 
      <div ui-view="">
      </div>
@@ -38,19 +38,24 @@
     <script src="../bower_components/angular-material-icons/angular-material-icons.min.js"></script>
     
     <script src="./src/app.js"></script>
-    <script src="./src/filters/general-filters.js"></script>
-    <script src="./src/directives/class-by-media/class-by-media.js"></script>
-    <script src="./src/directives/main-header/main-header-directive.js"></script>
-    <script src="./src/directives/main-search/main-search-directive.js"></script> 
-    <script src="./src/directives/infozone/infozone-directive.js"></script>
-    <script src="./src/configs/routes.js"></script>
-   
+    <script src="./src/common/filters/commonFilters.js"></script>
+    <script src="./src/common/directives/commonDirectives.js"></script>
+    <script src="./src/page-home/pageHome.js"></script>    
+    <script src="./src/page-politician/pagePolitician.js"></script>
     
-
-    <script src="./src/home/homeController.js"></script>
-    <script src="./src/politician/politicianController.js"></script>
-   
+    
+    <script src="./src/configs/routes.js"></script>
     <script src="./src/configs/material.js"></script>
+    
+    <script src="./src/common/filters/start-from-filter.js"></script>
+    <script src="./src/common/directives/class-by-media/class-by-media-directive.js"></script>
+    <script src="./src/common/directives/main-header/main-header-directive.js"></script>
+
+    <script src="./src/page-home/pageHomeCtrl.js"></script>
+    <script src="./src/page-home/directives/main-search/main-search-directive.js"></script>
+ <script src="./src/page-home/directives/infozone/infozone-directive.js"></script>
+
+    <script src="./src/page-politician/pagePoliticianCtrl.js"></script>   
     
   </body>
 </html>
