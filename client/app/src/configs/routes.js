@@ -18,6 +18,11 @@
 		controller: 'PagePoliticianCtrl',
 		controllerAs: 'pagePolitician'
 	    })
-
+	    .state('party', {
+		url: "/party",
+		templateUrl: "src/page-party/pageParty.html",
+		controller: 'PagePartyCtrl',
+		controllerAs: 'pageParty'
+	    })
     });
 })();

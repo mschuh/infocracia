@@ -7,7 +7,8 @@
 	'ui.router',
 	'ngMdIcons',
 	'app.pageHome',
-	'app.pagePolitician'
+	'app.pagePolitician',
+	'app.pageParty'
     ]);
 
 })();

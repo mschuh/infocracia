@@ -1,0 +1,42 @@
+<div class="page-party">
+  <pl-main-header flex="grow"></pl-main-header>
+  <div class="party-header-gt-xs grey-bg" hide show-gt-xs layout="row" layout-align="center">
+    <div class="party-header-content-gt-xs std-width" layout="row">
+      <div class="party-picture-gt-xs" flex="none">
+	<img ng-src="{{pageParty.photoUrl}}" />
+      </div>  
+      <div class="party-info-gt-xs" flex layout="column" layout-align="start end">
+	<div class="info md-display-1">{{pageParty.name}}</div>
+	<div class="info md-display-2">{{pageParty.acronym}}</div>
+	<div class="info md-body-1" ng-show="pageParty.politicians.length">{{pageParty.politicians.length}} Membros</div>
+      </div>
+    </div>
+  </div>
+  <div class="party-header-xs grey-bg" hide show-xs>
+    <div class="party-picture-xs">
+      <img ng-src="{{pageParty.photoUrl}}" />
+    </div>  
+    <div class="party-name-xs  md-display-2">{{pageParty.acronym}}</div>
+  </div>
+  <div layout="column" layout-align-xs="start" layout-align-gt-xs="start center">
+    
+    <div flex class-gt-sm="std-width" layout="row" layout-align-xs="center" layout-wrap>
+      <md-progress-circular flex ng-hide="pageParty.politicians.length" md-mode="indeterminate"></md-progress-circular>
+      <md-card class="politician-card" layout="column" ng-repeat="politician in pageParty.politicians">
+	<img ng-src="{{politician.photoUrl}}" class="md-card-image" alt="{{politician.name}}">
+	<md-card-title>
+	  <md-card-title-text>
+	    <span class="md-headline">{{politician.name}}</span>
+	  </md-card-title-text>
+	</md-card-title>
+	<md-card-content>
+	</md-card-content>
+	<md-card-actions layout="row" layout-align="end center">
+	  <md-button class="md-icon-button" aria-label="Share">
+	    <md-icon md-svg-icon="share"></md-icon>
+	  </md-button>
+	</md-card-actions>
+      </md-card>
+    </div>
+  </div>
+</div>
