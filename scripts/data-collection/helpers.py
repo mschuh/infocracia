@@ -1,5 +1,10 @@
 import wikipedia
 import requests
+import os
+import re
+import shutil
+import zipfile
+
 from clint.textui import progress
 
 def wiki_image(lang, query, addkeywords):
@@ -14,7 +19,7 @@ def wiki_image(lang, query, addkeywords):
     except wikipedia.exceptions.DisambiguationError as e:
         for option in e.options:
             found = False
-            for addkeyword in addkeywords:
+            for addkeyword in addkeywrds:
                 if addkeyword in option:
                     print option
                     page = wikipedia.page(option)
@@ -33,6 +38,9 @@ def wiki_image(lang, query, addkeywords):
         return page.images[0]
 
 def download_file(url, folder):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
     local_filename = folder + url.split('/')[-1]
     # NOTE the stream=True parameter
     print "Downloading %s" % local_filename
@@ -44,3 +52,31 @@ def download_file(url, folder):
                 f.write(chunk)
                 f.flush()  # commented by recommendation from J.F.Sebastian
     return local_filename
+
+def filterConsultaCand(regex):
+    """Download the full information from TSE candidates in temporary files and filter them by returning only the lines
+    that match the passed regular expression in form of an array.
+    """
+
+    temporaryDirPath = os.path.dirname(__file__) + "/tmp/"
+    #Download zip file
+    candFile = download_file("http://agencia.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2014.zip",
+        temporaryDirPath)
+
+    print("Exctracting files...")
+    candZip = zipfile.ZipFile(candFile, 'r')
+    candZip.extractall(temporaryDirPath)
+    candZip.close()
+    print("Files exctracted.")
+
+    candidates = []
+    for fileName in os.listdir(temporaryDirPath):
+        if re.search(".*\.txt", fileName): #if it is a txt file
+            print("Search regular expression in " + fileName)
+            with open(temporaryDirPath + fileName, 'r') as currentFile:
+                for line in currentFile:
+                    if re.search(regex, line):
+                        candidates.append(line.decode('iso-8859-1'))
+
+    shutil.rmtree(temporaryDirPath) #remove temporary folder
+    return candidates
