@@ -53,7 +53,7 @@ def download_file(url, folder):
                 f.flush()  # commented by recommendation from J.F.Sebastian
     return local_filename
 
-def filterConsultaCand(regex):
+def filter_consulta_cand(regex):
     """Download the full information from TSE candidates in temporary files and filter them by returning only the lines
     that match the passed regular expression in form of an array.
     """
