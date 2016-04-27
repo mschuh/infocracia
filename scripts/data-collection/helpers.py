@@ -53,15 +53,15 @@ def download_file(url, folder):
                 f.flush()  # commented by recommendation from J.F.Sebastian
     return local_filename
 
-def filter_consulta_cand(regex):
+def filter_consulta_cand(regex, year):
     """Download the full information from TSE candidates in temporary files and filter them by returning only the lines
     that match the passed regular expression in form of an array.
     """
 
     temporaryDirPath = os.path.dirname(__file__) + "/tmp/"
     #Download zip file
-    candFile = download_file("http://agencia.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_2014.zip",
-        temporaryDirPath)
+    url = "http://agencia.tse.jus.br/estatistica/sead/odsele/consulta_cand/consulta_cand_year.zip".replace("year", year)
+    candFile = download_file(url, temporaryDirPath)
 
     print("Exctracting files...")
     candZip = zipfile.ZipFile(candFile, 'r')
