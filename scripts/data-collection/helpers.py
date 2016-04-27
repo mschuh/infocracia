@@ -76,7 +76,7 @@ def filter_consulta_cand(regex):
             with open(temporaryDirPath + fileName, 'r') as currentFile:
                 for line in currentFile:
                     if re.search(regex, line):
-                        candidates.append(line.decode('iso-8859-1'))
+                        candidates.append(line.decode('iso-8859-1').replace("\"", ""))
 
     shutil.rmtree(temporaryDirPath) #remove temporary folder
     return candidates
