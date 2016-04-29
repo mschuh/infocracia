@@ -55,7 +55,7 @@ for deputy in deputiesDataTree:
 
     print('Inserting info from Deputy ' + politicalName + ' into database...')
     newPerson = PersonDTO(name, politicalName, birthDate, gender, email, photoUrl, profession)
-    personId = PersonDAO.insertPersonOnDB(newPerson)
+    personId = PersonDAO.insertPersonInDB(newPerson)
 
     newFederalDeputyTerm = FederalDeputyTermDTO(chamberId, personId, state, initialDate, finalDate)
-    FederalDeputyTermDAO.insertTermOnDB(newFederalDeputyTerm)
+    FederalDeputyTermDAO.insertTermInDB(newFederalDeputyTerm)

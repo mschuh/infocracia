@@ -71,3 +71,12 @@ class SenateCommissionParticipationDTO:
         self.senatorTermId = senatorTermId
         self.senateCommissionId = senateCommissionId
         self.role = role
+
+class ExecutiveTermDTO:
+    'Class used to store and transfer the data of a term of Federal Deputy'
+    def __init__(self, personId, state, initialDate, finalDate, role):
+        self.personId = personId
+        self.state = state
+        self.initialDate = initialDate
+        self.finalDate = finalDate
+        self.role = role

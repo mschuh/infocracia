@@ -41,7 +41,7 @@ for senator in senatorsDataTree:
 
     print('Inserting info from Senator ' + politicalName + ' into database...')
     newPerson = PersonDTO(name, politicalName, birthDate, gender, email, photoUrl)
-    personId = PersonDAO.insertPersonOnDB(newPerson)
+    personId = PersonDAO.insertPersonInDB(newPerson)
 
     newSenatorTerm = SenatorTermDTO(senateId, personId, state, initialDate, finalDate)
-    SenatorTermDAO.insertTermOnDB(newSenatorTerm)
+    SenatorTermDAO.insertTermInDB(newSenatorTerm)

@@ -89,7 +89,7 @@ def fill_party_table(crawled_file):
             print acronym,name,photoUrl
 
             newParty = PartyDTO(name, acronym, photoUrl)
-            partyId = PartyDAO.insertPartyOnDB(newParty)
+            partyId = PartyDAO.insertPartyInDB(newParty)
 
 def parse_csv_files():
     csv_dir = files_top_dir + 'csv/'

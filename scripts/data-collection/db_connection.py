@@ -17,7 +17,7 @@ class DbConnection:
 class PersonDAO:
     'Data access object for person, include the methods for inserting and retrieving a person from the data base'
     @staticmethod
-    def insertPersonOnDB(personDTO):
+    def insertPersonInDB(personDTO):
         #insert a person on the database and returns the unique id of this person on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -41,7 +41,7 @@ class PersonDAO:
         return id
 
     @staticmethod
-    def findPersonOnDB():
+    def findPersonInDB():
         #returns a PersonDTO according to the search criteria
         print('Not yet implemented')
 
@@ -49,7 +49,7 @@ class PersonDAO:
 class FederalDeputyTermDAO:
     'Data access object for federal deputy term, include the methods for inserting and retrieving a terms from the DB'
     @staticmethod
-    def insertTermOnDB(federalDeputyTermDTO):
+    def insertTermInDB(federalDeputyTermDTO):
         #insert a federal deputy term on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -80,7 +80,7 @@ class FederalDeputyTermDAO:
 class ChamberAgencyDAO:
     'Data access object for chamber agency, include the methods for inserting and retrieving an agency from the DB'
     @staticmethod
-    def insertAgencyOnDB(chamberAgencyDTO):
+    def insertAgencyInDB(chamberAgencyDTO):
         #insert a deputies' chamber agency in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -114,7 +114,7 @@ class FedDeputyAgencyParticipationDAO:
     participation from the data base'
     """
     @staticmethod
-    def insertParticipationOnDB(fedDeputyAgencyParticipationDTO):
+    def insertParticipationInDB(fedDeputyAgencyParticipationDTO):
         #insert a federal deputy agency participation on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -131,7 +131,7 @@ class FedDeputyAgencyParticipationDAO:
 class SenatorTermDAO:
     'Data access object for senator term'
     @staticmethod
-    def insertTermOnDB(senatorTermDTO):
+    def insertTermInDB(senatorTermDTO):
         #insert a senator term in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -148,7 +148,7 @@ class SenatorTermDAO:
 class SenateCommissionDAO:
     'Data access object for a commission from the senate'
     @staticmethod
-    def insertCommissionOnDB(senateCommissionDTO):
+    def insertCommissionInDB(senateCommissionDTO):
         #insert a senate commission in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -168,7 +168,7 @@ class SenateCommissionParticipationDAO:
     participation from the data base
     """
     @staticmethod
-    def insertParticipationOnDB(senateCommissionParticipationDTO):
+    def insertParticipationInDB(senateCommissionParticipationDTO):
         #insert a senate commision participation in the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -185,7 +185,7 @@ class SenateCommissionParticipationDAO:
 class PartyDAO:
     'Data access object for parties, include the methods for inserting and retrieving a party from the data base'
     @staticmethod
-    def insertPartyOnDB(partyDTO):
+    def insertPartyInDB(partyDTO):
         #insert a party on the database and returns the unique id of this party on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -200,7 +200,7 @@ class PartyDAO:
         return id
 
     @staticmethod
-    def findPartyOnDB():
+    def findPartyInDB():
         #returns a PartyDTO according to the search criteria
         print('Not yet implemented')
 
@@ -210,7 +210,7 @@ class FiliationDAO:
     from the data base'
     """
     @staticmethod
-    def insertFiliationOnDB(filiationDTO):
+    def insertFiliationInDB(filiationDTO):
         #insert a filiation on the database
         dbConnection = DbConnection()
         cnx = dbConnection.connection
@@ -221,5 +221,23 @@ class FiliationDAO:
                           "VALUES (%(initialDate)s, %(finalDate)s, %(personId)s, %(partyId)s)")
 
         cursor.execute(addFiliationRequest, filiationDTO.__dict__)
+        cnx.commit()
+        cnx.close()
+
+
+class ExecutiveTermDAO:
+    'Data access object for executive term, include the methods for inserting terms from in DB'
+    @staticmethod
+    def insertTermInDB(executiveTermDTO):
+        #insert a executive term in the database
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
+
+        addTermRequest = ("INSERT INTO executive_term "
+                          "(person_id, state, initial_date, final_date, role) "
+                          "VALUES (%(personId)s, %(state)s, %(initialDate)s, %(finalDate)s, %(role)s)")
+
+        cursor.execute(addTermRequest, executiveTermDTO.__dict__)
         cnx.commit()
         cnx.close()

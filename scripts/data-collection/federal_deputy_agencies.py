@@ -24,7 +24,7 @@ for agency in agenciesDataTree:
 
     print('Inserting info from ' + acronym + ' into the database...')
     newAgency = ChamberAgencyDTO(chamberId, acronym, description, active)
-    ChamberAgencyDAO.insertAgencyOnDB(newAgency)
+    ChamberAgencyDAO.insertAgencyInDB(newAgency)
 
     print('Downloading member information from ' + acronym)
 
@@ -48,7 +48,7 @@ for agency in agenciesDataTree:
         idPresident = agencyMembers.find('Presidente').findtext('ideCadastro')
         print('Inserting president ' + agencyMembers.find('Presidente').findtext('nome') + ' relation into DB')
         presidentParticipation = FedDeputyAgencyParticipationDTO(idPresident, chamberId, 'P')
-        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(presidentParticipation)
+        FedDeputyAgencyParticipationDAO.insertParticipationInDB(presidentParticipation)
     except:
         print("Impossible to add a participation for deputy " + member.findtext('nome'))
         print(sys.exc_info()[0])
@@ -58,7 +58,7 @@ for agency in agenciesDataTree:
         idFirstVp = agencyMembers.find('PrimeiroVice-Presidente').findtext('ideCadastro')
         print('Inserting first VP ' + agencyMembers.find('PrimeiroVice-Presidente').findtext('nome') + ' relation into DB')
         firstVpParticipation = FedDeputyAgencyParticipationDTO(idFirstVp, chamberId, 'F')
-        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(firstVpParticipation)
+        FedDeputyAgencyParticipationDAO.insertParticipationInDB(firstVpParticipation)
     except:
         print("Impossible to add a participation for deputy " + member.findtext('nome'))
         print(sys.exc_info()[0])
@@ -68,7 +68,7 @@ for agency in agenciesDataTree:
         idSecondVp = agencyMembers.find('SegundoVice-Presidente').findtext('ideCadastro')
         print('Inserting second VP ' + agencyMembers.find('SegundoVice-Presidente').findtext('nome') + ' relation into DB')
         secondVpParticipation = FedDeputyAgencyParticipationDTO(idSecondVp, chamberId, 'S')
-        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(secondVpParticipation)
+        FedDeputyAgencyParticipationDAO.insertParticipationInDB(secondVpParticipation)
     except:
         print("Impossible to add a participation for deputy " + member.findtext('nome'))
         print(sys.exc_info()[0])
@@ -78,7 +78,7 @@ for agency in agenciesDataTree:
         idThirdVp = agencyMembers.find('TerceiroVice-Presidente').findtext('ideCadastro')
         print('Inserting third VP ' + agencyMembers.find('TerceiroVice-Presidente').findtext('nome') + ' relation into DB')
         thirdVpParticipation = FedDeputyAgencyParticipationDTO(idThirdVp, chamberId, 'T')
-        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(thirdVpParticipation)
+        FedDeputyAgencyParticipationDAO.insertParticipationInDB(thirdVpParticipation)
     except:
         print("Impossible to add a participation for deputy " + member.findtext('nome'))
         print(sys.exc_info()[0])
@@ -88,7 +88,7 @@ for agency in agenciesDataTree:
         idRapporteur = agencyMembers.find('Relator').findtext('ideCadastro')
         print('Inserting rapporteur ' + agencyMembers.find('Relator').findtext('nome') + ' relation into DB')
         rapporteurParticipation = FedDeputyAgencyParticipationDTO(idRapporteur, chamberId, 'R')
-        FedDeputyAgencyParticipationDAO.insertParticipationOnDB(rapporteurParticipation)
+        FedDeputyAgencyParticipationDAO.insertParticipationInDB(rapporteurParticipation)
     except:
         print("Impossible to add a participation for deputy " + member.findtext('nome'))
         print(sys.exc_info()[0])
@@ -99,7 +99,7 @@ for agency in agenciesDataTree:
         print('Inserting member ' + member.findtext('nome') + ' relation into DB')
         memberParticipation = FedDeputyAgencyParticipationDTO(idMember, chamberId, 'M')
         try:
-            FedDeputyAgencyParticipationDAO.insertParticipationOnDB(memberParticipation)
+            FedDeputyAgencyParticipationDAO.insertParticipationInDB(memberParticipation)
         except:
             print("Impossible to add a participation for deputy " + member.findtext('nome'))
             print(sys.exc_info()[0])

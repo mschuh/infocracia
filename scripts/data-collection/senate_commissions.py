@@ -22,7 +22,7 @@ for commission in commissionsDataTree:
 
     print('Inserting info from ' + name + ' into the database...')
     newCommission = SenateCommissionDTO(senateId, acronym, name, active)
-    SenateCommissionDAO.insertCommissionOnDB(newCommission)
+    SenateCommissionDAO.insertCommissionInDB(newCommission)
 
     rolesMapping = {'PRESIDENTE' : 'P', 'VICE-PRESIDENTE' : 'V', 'RELATOR' : 'R'}
     specialMembersIds = []
@@ -38,7 +38,7 @@ for commission in commissionsDataTree:
 
         print('Inserting ' + fullRoleName + ' ' + specialMember.findtext('NomeParlamentar') + ' relation into DB')
         memberParticipation = SenateCommissionParticipationDTO(specialMemberId, senateId, specialMemberRole)
-        SenateCommissionParticipationDAO.insertParticipationOnDB(memberParticipation)
+        SenateCommissionParticipationDAO.insertParticipationInDB(memberParticipation)
 
         specialMembersIds.append(int(specialMemberId))
 
@@ -56,4 +56,4 @@ for commission in commissionsDataTree:
             if int(memberId) not in specialMembersIds:
                 print('Inserting member ' + member.findtext('NomeParlamentar') + ' relation into DB' )
                 memberParticipation = SenateCommissionParticipationDTO(memberId, senateId, 'M')
-                SenateCommissionParticipationDAO.insertParticipationOnDB(memberParticipation)
+                SenateCommissionParticipationDAO.insertParticipationInDB(memberParticipation)
