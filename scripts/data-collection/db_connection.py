@@ -41,10 +41,22 @@ class PersonDAO:
         return id
 
     @staticmethod
-    def findPersonInDB():
-        #returns a PersonDTO according to the search criteria
-        print('Not yet implemented')
+    def findPersonbyNameAndBirthDate(name, birthDate):
+        #returns a PersonDTO according containing the data corresponding to the passed id
+        dbConnection = DbConnection()
+        cnx = dbConnection.connection
+        cursor = cnx.cursor()
 
+        selectPersonRequest = ("SELECT * FROM person WHERE name=%s AND birth_date=%s")
+
+        cursor.execute(selectPersonRequest,(name, birthDate, ))
+        personRow = cursor.fetchone()
+
+        if personRow is None:
+            return None
+        else:
+            #starts in 1 because the table has an ID not implemented in the DTO
+            return PersonDTO(personRow[1], personRow[2], personRow[3], personRow[4], personRow[5], personRow[6], personRow[7])
 
 class FederalDeputyTermDAO:
     'Data access object for federal deputy term, include the methods for inserting and retrieving a terms from the DB'

@@ -4,6 +4,8 @@ import fnmatch
 import os
 import zipfile
 import glob
+import chardet
+from datetime import datetime
 
 from db_connection import *
 from model import *
@@ -78,18 +80,74 @@ def fill_party_table(crawled_file):
             csvfile.seek(0)
             reader = csv.DictReader(csvfile,dialect=dialect)
             row = next(reader)  # only the first row matters
-            acronym = row['SIGLA DO PARTIDO']
-            name = row['NOME DO PARTIDO']
+            acronym = row['SIGLA DO PARTIDO'].decode('cp1252')
+            name = row['NOME DO PARTIDO'].decode('cp1252')
             if 'PARTIDO' not in name:
                 query = name + ' partido'
             else:
                 query = name
             addkeywords = ["Brasil","partido",acronym]
             photoUrl = wiki_image('pt',query,addkeywords)
-            print acronym,name,photoUrl
+            print [acronym,name,photoUrl]
 
             newParty = PartyDTO(name, acronym, photoUrl)
             partyId = PartyDAO.insertPartyInDB(newParty)
+
+def fill_filiation_table():
+    csv_dir = files_top_dir + 'csv/'
+    count = 0
+
+    candidates_2010 = filter_consulta_cand(".*", "2010")
+    candidates_2014 = filter_consulta_cand(".*", "2014")
+    candidates = candidates_2010 + candidates_2014
+    cand_dict = {}
+    for candidate in candidates:
+        num = int(candidate.split(";")[27])
+        cand_dict[num] = candidate
+
+    print "cand_2010", len(candidates_2010)
+    print "cand_2014", len(candidates_2014)
+    print "candidates", len(candidates)
+    print len(cand_dict)
+
+    for file in os.listdir(csv_dir):
+        #print("Searching for filiation data in file " + file)
+        with open(csv_dir+file) as csvfile:
+            dialect = csv.Sniffer().sniff(csvfile.read(1024))
+            csvfile.seek(0)
+            reader = csv.DictReader(csvfile,dialect=dialect)
+            for row in reader:
+                try:
+                    num = int(row['NUMERO DA INSCRICAO'].decode('cp1252'))
+                    situation = (row['SITUACAO DO REGISTRO'].decode('cp1252'))
+                except ValueError:
+                    num = 0;
+                if (num in cand_dict) and (situation != 'CANCELADO'):
+                    candidate = cand_dict.get(num)
+                    cand_name = candidate.split(";")[10]
+                    cand_bdate = candidate.split(";")[26]
+                    if cand_name == "WALDEMIR MOKA MIRANDA DE BRITO":
+                        print '\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH'
+                        print cand_name, cand_bdate
+                        print '\n'
+                    try:
+                        d = datetime.strptime(cand_bdate, "%d-%b-%y")
+                    except ValueError:
+                        d = datetime.strptime(cand_bdate, "%d/%m/%Y")
+                    if d > datetime.now():
+                        d = datetime(d.year - 100, d.month, d.day)
+                    cand_bdate = d.strftime('%Y-%m-%d')
+                    #cand_bdate = '-'.join(reversed(cand_bdate))
+                    if cand_name == "Waldemir Moka Miranda de Britto":
+                        print '\nAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH'
+                        print cand_name, cand_bdate
+                        print '\n'
+                    person = PersonDAO.findPersonbyNameAndBirthDate(cand_name,cand_bdate)
+                    if person is not None:
+                        count = count + 1
+                        print "PERSON "+person.name.encode('utf-8')+" "+situation.encode('utf-8')
+
+    print "NUMBER OF FILIATIONS FOUND: ", count
 
 def parse_csv_files():
     csv_dir = files_top_dir + 'csv/'
@@ -98,4 +156,4 @@ def parse_csv_files():
         with open(file) as csvfile:
             reader = csv.DictReader(csvfile)
 
-fill_party_table(files_top_dir+'parties.csv')
+fill_filiation_table()
